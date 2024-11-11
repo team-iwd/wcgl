@@ -36,7 +36,7 @@ async function main() {
   internetTexture.LoadeTextureFromImage(gl, 'https://c1.staticflickr.com/9/8873/18598400202_3af67ef38f_q.jpg')
   
   //---Camera(view) Initialize
-  let eye = [0.0, 0.0, 5.0];
+  let eye = [2.0, 0.0, 3.0];
   let up = [0.0, 1.0, 0.0];
   let yaw = -90.0;
   let pitch = 0.0;
@@ -63,6 +63,21 @@ async function main() {
   let rotationAngle = 0;
 
   requestAnimationFrame(drawScene);
+
+  /*
+    OpenGL stores all its depth information in a z-buffer, also known as a depth buffer. 
+    
+    GLFW automatically creates such a buffer for you (just like it has a color-buffer that stores the colors of the output image). 
+    The depth is stored within each fragment (as the fragment's z value) and whenever the fragment wants to output its color, 
+    OpenGL compares its depth values with the z-buffer. 
+    
+    If the current fragment is behind the other fragment it is discarded, otherwise overwritten. 
+    This process is called depth testing and is done automatically by OpenGL.
+
+    https://learnopengl.com/Getting-started/Coordinate-Systems
+  */
+  //gl.enable(gl.DEPTH_TEST);
+  gl.enable(gl.CULL_FACE);
 
   function drawScene()
   {
@@ -100,6 +115,8 @@ async function main() {
 
       //주전자에는 checker texture를 사용해 보겠습니다.
       //이번에는 1번 텍스처 유닛에 바인딩하고 셰이더에는 1번 유닛을 사용하도록 알려줍니다.
+      //checkerTexture.Bind(gl,0);
+      //shader.SetUniform1i(gl, "u_mainTexture", 0);
       checkerTexture.Bind(gl,1);
       shader.SetUniform1i(gl, "u_mainTexture", 1);
       
