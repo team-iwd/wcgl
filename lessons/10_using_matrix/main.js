@@ -11,7 +11,7 @@ import Renderer from '../_classes/Renderer.js';
 import basicProjectionFragmentShader from '../_shaders/basicProjectionFragment.js';
 import basicProjectionVertexShader from '../_shaders/basicProjectionVertex.js';
 
-const {mat2, mat3, mat4, vec2, vec3, vec4} = glMatrix;
+const { mat2, mat3, mat4, vec2, vec3, vec4 } = glMatrix;
 
 function main() {
   // Get A WebGL context
