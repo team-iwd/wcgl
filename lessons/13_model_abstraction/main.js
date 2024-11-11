@@ -28,12 +28,12 @@ async function main() {
   teapot.LoadModel(gl, '../../resources/models/teapot/teapot.obj')
   
   //---Camera(view) Initialize
-  let eye = [0.0, 0.0, 5.0];
+  let eye = [0.0, 1.0, 6.0];
   let up = [0.0, 1.0, 0.0];
   let yaw = -90.0;
   let pitch = 0.0;
   let movespeed = 0.05;
-  let turnspeed = 0.5;
+  let turnspeed = 0.35;
   let mainCamera = new Camera(eye,up,yaw,pitch,movespeed,turnspeed);
   
   //---Projection Initialize
@@ -81,7 +81,8 @@ async function main() {
 
       //---주전자 그리기
       model = mat4.create();
-      mat4.translate(model, model, [3, 0, 0]);
+      mat4.translate(model, model, [0, 3, 1]);
+      mat4.rotateY(model, model, rotationAngle);
       mat4.scale(model, model, [0.1, 0.1, 0.1]);
       shader.SetUniformMat4f(gl, "u_model", model);
 
